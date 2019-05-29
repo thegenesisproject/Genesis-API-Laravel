@@ -44,7 +44,7 @@ class User extends Authenticatable
      * 
      * @see https://laravel.com/docs/5.8/eloquent-relationships#polymorphic-relationships
      */
-    public function imageable()
+    public function userable()
     {
         return $this->morphTo();
     }
