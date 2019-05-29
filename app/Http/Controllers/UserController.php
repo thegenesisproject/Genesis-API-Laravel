@@ -88,4 +88,21 @@ class UserController extends Controller
 
         return response(null, 204);
     }
+
+    //----------------------------------------------------------------------------------
+    // SUPPORT FUNCTIONS
+    //----------------------------------------------------------------------------------
+
+    /**
+     * Show the current authenticated user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function current(Request $request)
+    {
+        $user = $request->user();
+
+        // return the model instance as API resource
+        return new UserResource($user);
+    }
 }
