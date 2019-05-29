@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreAdminRequest;
+use App\Http\Requests\UpdateAdminRequest;
+
+use App\Http\Resources\AdminResource;
+use App\Http\Resources\AdminResourceCollection;
 
 class AdminController extends Controller
 {
@@ -14,7 +19,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        // get model with its relevant relationship
+        $admins = Admin::with('user')->get();
+
+        // return the model collection instance as API resource collection
+        return new AdminResourceCollection($admins);
     }
 
     /**
@@ -33,9 +42,18 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAdminRequest $request)
     {
-        //
+        $admin = new Admin();
+
+        $admin->is_super = $request->is_super;
+        $admin->job_title = $request->job_title;
+        $admin->phone = $request->phone;
+
+        $admin->save();
+
+        // return the model instance as API resource
+        return new AdminResource($admin);
     }
 
     /**
@@ -46,7 +64,7 @@ class AdminController extends Controller
      */
     public function show(Admin $admin)
     {
-        //
+        return new AdminResource($admin);
     }
 
     /**
@@ -67,9 +85,15 @@ class AdminController extends Controller
      * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(UpdateAdminRequest $request, Admin $admin)
     {
-        //
+        $admin->is_super = $request->get('is_super', $admin->is_super);
+        $admin->job_title = $request->get('job_title', $admin->job_title);
+        $admin->phone = $request->get('phone', $admin->phone);
+
+        $admin->save();
+
+        return new AdminResource($admin);
     }
 
     /**
@@ -80,6 +104,8 @@ class AdminController extends Controller
      */
     public function destroy(Admin $admin)
     {
-        //
+        $admin->delete();
+
+        return response(null, 204);
     }
 }
