@@ -14,6 +14,11 @@ class AdminResourceCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'data' => AdminResource::collection($this->collection),
+            'meta' => [
+                'total_count' => $this->collection->count()
+            ],
+        ];
     }
 }

@@ -14,6 +14,14 @@ class AdminResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'is_super' => $this->is_super,
+            'job_title' => $this->job_title,
+            'phone' => $this->phone,
+
+            // include linked user
+            // 'user' => new UserResource($this->user),
+        ];
     }
 }
