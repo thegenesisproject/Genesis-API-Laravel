@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\Users\StoreUserRequest;
+use App\Http\Requests\Users\UpdateUserRequest;
+
+use App\Http\Resources\UserResource;
+use App\Http\Resources\UserResourceCollection;
 
 class UserController extends Controller
 {
@@ -14,7 +19,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+
+        // return the model collection instance as API resource collection
+        return new \UserResourceCollection($users);
     }
 
     /**
@@ -23,9 +31,19 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+        $user = new User();
+
+        $user->name = $request->name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+
+        $user->save();
+
+        // return the model instance as API resource
+        return new UserResource($user);
     }
 
     /**
@@ -36,7 +54,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return new UserResource($user);
     }
 
     /**
@@ -46,9 +64,16 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $user->name = $request->get('name', $user->name);
+        $user->username = $request->get('username', $user->username);
+        $user->email = $request->get('email', $user->email);
+        $user->password = $request->get('password', $user->password);
+
+        $user->save();
+
+        return new UserResource($user);
     }
 
     /**
@@ -59,6 +84,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return response(null, 204);
     }
 }
