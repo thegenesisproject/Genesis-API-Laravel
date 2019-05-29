@@ -38,4 +38,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Polymorphic relationship: shared model.
+     * 
+     * @see https://laravel.com/docs/5.8/eloquent-relationships#polymorphic-relationships
+     */
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
 }

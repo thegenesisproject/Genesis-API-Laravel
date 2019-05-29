@@ -22,6 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            // https://logrocket.com/blog/polymorphic-relationships-in-laravel
+            $table->morphs('userable');
         });
     }
 
