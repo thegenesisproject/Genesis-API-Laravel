@@ -13,7 +13,7 @@ class UpdateAdminRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class UpdateAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'is_super' => 'boolean',
+            'job_title' => 'string|nullable',
+            'phone' => 'alpha_num|nullable',
         ];
     }
 }
