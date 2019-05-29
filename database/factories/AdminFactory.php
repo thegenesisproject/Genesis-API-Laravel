@@ -9,6 +9,6 @@ $factory->define(Admin::class, function (Faker $faker) {
     return [
         'is_super' => false,
         'job_title' => $faker->jobTitle,
-        'phone' => $faker->e164PhoneNumber,  
+        'phone' => $faker->unique()->e164PhoneNumber,  
     ];
 });
