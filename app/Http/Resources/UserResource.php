@@ -22,8 +22,8 @@ class UserResource extends JsonResource
             'username' => $this->username,
             'email' => $this->email,
 
-            // include linked categories
-            // 'categories' => new CategoryResourceCollection($this->categories),
+            // include linked model
+            // 'admin' => new AdminResource($this->userable->admin),
         ];
     }
 }

@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
                     'password' => bcrypt('admin'),
                     'created_at' => Carbon::now(),
                     'userable_id' => 1,
-                    'userable_type' => 'App\\Admin'
+                    'userable_type' => 'App\Admin'
                 ),
 
                 array(

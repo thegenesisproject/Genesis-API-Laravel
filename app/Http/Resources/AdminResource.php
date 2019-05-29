@@ -20,8 +20,8 @@ class AdminResource extends JsonResource
             'job_title' => $this->job_title,
             'phone' => $this->phone,
 
-            // include linked user
-            // 'user' => new UserResource($this->user),
+            // include linked model
+            'user' => new UserResource($this->user),
         ];
     }
 }

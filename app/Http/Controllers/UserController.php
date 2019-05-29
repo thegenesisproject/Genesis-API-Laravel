@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('userable')->get();
 
         // return the model collection instance as API resource collection
         return new UserResourceCollection($users);
