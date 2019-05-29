@@ -8,6 +8,7 @@ This project gives you a boilerplate to start building your REST API with [Larav
 - Clone the project from Github, **specifically the 'api-5.x' branch**: `$ git clone git@github.com:thegenesisproject/Genesis-Laravel-API.git --branch api-5.8`, then `$ git checkout -b master`
 - Do the usual [Laravel installation and configurations](https://laravel.com/docs/5.8)
 - Install composer packages (dependencies): `$ composer install`
+- Create a *.env* file, and use content from *.env.example*
 - Update the app namespace: `$ php artisan app:name MyAppName`
 - Run the migrations: `$ php artisan migrate --seed`
 - Start the server: `$ php artisan serve`
