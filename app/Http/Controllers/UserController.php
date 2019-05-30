@@ -54,6 +54,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        // get user model from id
+        $user = User::with('userable')->find($user->id);
+
         return new UserResource($user);
     }
 
@@ -98,9 +101,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function current(Request $request)
+    public function currentUser(Request $request)
     {
-        $user = $request->user();
+        // get current user id
+        $user_id = $request->user()->id;
+
+        // get user model from id
+        $user = User::with('userable')->find($user_id);
 
         // return the model instance as API resource
         return new UserResource($user);

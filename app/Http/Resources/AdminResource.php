@@ -21,7 +21,7 @@ class AdminResource extends JsonResource
             'phone' => $this->phone,
 
             // include linked model
-            'user' => new UserResource($this->user),
+            'user' => new UserResource($this->whenLoaded('user')),
         ];
     }
 }
