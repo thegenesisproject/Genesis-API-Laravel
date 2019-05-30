@@ -21,20 +21,27 @@ This project gives you a boilerplate to start building your REST API with [Larav
 
 ### Sample Data
 
-Data has been added to help you speed up the project setup. This data includes:
+Data has been added to help you speed up the project setup. This sample data includes:
 
 - Users
 - Admins
-- Product Categories
 - (more to come...)
+
+We also added some sample relationships:
+
+- One-To-One [polymorphic relationship](https://laravel.com/docs/5.8/eloquent-relationships#polymorphic-relationships) between `Admin` and `User`
 
 ### Testing the API
 
 You can have a look at the `routes/api.php` file to get an idea of the exposed API endpoints. Simply make a GET request to any of these endpoints and view the output.
 
-For example: `GET http://localhost:8000/users` will return JSON output containing username, email, and more.
+For example: `GET http://localhost:8000/users` will return JSON output containing user data from the database.
 
-## Contributing
+## Updates
+
+We will continue to make updates to this project as we add new features and fix any issues we encounter. Simply, check the commit logs if you would like to review the latest additions.
+
+### Contributing
 
 Feel free to contribute to this project by opening an [issue](https://github.com/thegenesisproject/Genesis-Laravel-API/issues), or sending a pull request.
 

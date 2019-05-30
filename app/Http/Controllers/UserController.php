@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Requests\Users\StoreUserRequest;
-use App\Http\Requests\Users\UpdateUserRequest;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 use App\Http\Resources\UserResource;
 use App\Http\Resources\UserResourceCollection;
@@ -19,10 +19,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('userable')->get();
 
         // return the model collection instance as API resource collection
-        return new \UserResourceCollection($users);
+        return new UserResourceCollection($users);
     }
 
     /**
@@ -54,6 +54,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        // get user model from id
+        $user = User::with('userable')->find($user->id);
+
         return new UserResource($user);
     }
 
@@ -98,9 +101,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function current(Request $request)
+    public function currentUser(Request $request)
     {
-        $user = $request->user();
+        // get current user id
+        $user_id = $request->user()->id;
+
+        // get user model from id
+        $user = User::with('userable')->find($user_id);
 
         // return the model instance as API resource
         return new UserResource($user);

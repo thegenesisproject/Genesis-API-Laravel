@@ -18,7 +18,7 @@ Route::group(['middleware' => ['auth:api']], function (){
 	/**
 	 * Resources API Endpoints
 	 */
-	Route::get('users/me', 'UserController@current'); // currently authenticated user
+	Route::get('users/me', 'UserController@currentUser'); // currently authenticated user
 	
 	// Route::get('users/me', 'Users\UserController@current')
 	// 	->middleware('scopes:change-settings,update-self'); // currently authenticated user (with scopes)
