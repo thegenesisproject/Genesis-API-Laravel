@@ -1,11 +1,12 @@
-# Genesis / Laravel API
+# Genesis / API / Laravel
 
-This project gives you a boilerplate to start building your REST API with [Laravel PHP framework](https://laravel.com). No more need to begin API development using the base framework.
+This project gives you a boilerplate to start building your REST API with [Laravel PHP framework](https://laravel.com). No more need to begin API development from scratch (using the base framework).
 
 ## How To Install
 
-- Navigate to your project folder in the terminal: `$ cd ~/.../my-project-folder`
-- Clone the project from Github, **specifically the 'api-5.x' branch**: `$ git clone git@github.com:thegenesisproject/Genesis-Laravel-API.git --branch api-5.8`, then `$ git checkout -b master`
+- Navigate to your projects folder in the terminal: `$ cd ~/.../my-projects-folder`
+- Clone the project from Github: `$ git clone git@github.com:thegenesisproject/Genesis-API-Laravel.git`. Then switch to an existing stable branch: `$ git checkout {api-master or api-5.8}`.
+> Or alternatively, you can clone **a specific branch (e.g. api-5.8)**: `$ git clone git@github.com:thegenesisproject/Genesis-Laravel-API.git --branch api-5.8`. Then create a new branch to act as the main branch: `$ git checkout -b {new-branch-name}`.
 - Do the usual [Laravel installation and configurations](https://laravel.com/docs/5.8)
 - Install composer packages (dependencies): `$ composer install`
 - Create a *.env* file, and use content from *.env.example*
