@@ -7,10 +7,11 @@ This project gives you a boilerplate to start building your REST API with [Larav
 - Navigate to your projects folder in the terminal: `$ cd ~/.../my-projects-folder`
 - Clone the project from Github: `$ git clone git@github.com:thegenesisproject/Genesis-API-Laravel.git`. Then switch to an existing stable branch: `$ git checkout {api-master or api-5.8}`.
 > Or alternatively, you can clone **a specific branch (e.g. api-5.8)**: `$ git clone git@github.com:thegenesisproject/Genesis-Laravel-API.git --branch api-5.8`. Then create a new branch to act as the main branch: `$ git checkout -b {new-branch-name}`.
-- Do the usual [Laravel installation and configurations](https://laravel.com/docs/5.8)
 - Install composer packages (dependencies): `$ composer install`
+- Do the usual [Laravel installation and configurations](https://laravel.com/docs/5.8)
 - Create a *.env* file, and use content from *.env.example*
 - Update the app namespace: `$ php artisan app:name MyAppName`
+> Make sure to also update all references to 'App\' namespace, with 'MyAppName\', inside the code.
 - Run the migrations: `$ php artisan migrate --seed`
 - Start the server: `$ php artisan serve`
 - You're ready to go! 
@@ -37,6 +38,8 @@ We also added some sample relationships:
 You can have a look at the `routes/api.php` file to get an idea of the exposed API endpoints. Simply make a GET request to any of these endpoints and view the output.
 
 For example: `GET http://localhost:8000/users` will return JSON output containing user data from the database.
+
+> **Note:** You will need to configure the Laravel Passport package in order to access the API data.
 
 ## Updates
 
